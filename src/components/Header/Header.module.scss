@@ -1,0 +1,30 @@
+.header {
+  //   background-color: #cccdcf;
+
+  height: 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__img {
+    height: 5rem;
+    width: 5rem;
+  }
+}
+
+.searchbar {
+  display: flex;
+  flex: 0 0 40%;
+}
+
+.info {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(-0.3rem);
+  }
+}

@@ -1,0 +1,11 @@
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 1rem 5rem rgba(black, 0.8);
+
+  min-height: 50rem;
+
+  display: flex;
+  flex-direction: column;
+}
