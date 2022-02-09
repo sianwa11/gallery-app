@@ -18,6 +18,7 @@ const Gallery = (props) => {
           className={styles["gallery__default"]}
           src={background}
           alt="background"
+          loading="lazy"
         />
       </figure>
 
@@ -28,6 +29,7 @@ const Gallery = (props) => {
           className={styles["gallery__default"]}
           src={background2}
           alt="background 2"
+          loading="lazy"
         />
       </figure>
 
@@ -38,6 +40,7 @@ const Gallery = (props) => {
           className={styles["gallery__default"]}
           src={photographer}
           alt="photographer"
+          loading="lazy"
         />
       </figure>
       <h1
@@ -59,10 +62,11 @@ const Gallery = (props) => {
             }`}
           >
             <img
-              placeholder={image.blur_hash}
+              placeholderSrc={image.blur_hash}
               src={image.urls.regular}
               alt={image.alt_description}
               className={styles["gallery__img"]}
+              loading="lazy"
             />
           </figure>
         ))}
