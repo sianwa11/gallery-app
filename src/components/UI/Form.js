@@ -1,31 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useRef } from "react";
 
 import styles from "./Form.module.scss";
 import { FaSearch } from "react-icons/fa";
-import ImageContext from "../../images/image-context";
 
-const Form = () => {
-  const [image, setImage] = useState("");
-  const imageCtx = useContext(ImageContext);
+const Form = (props) => {
+  const inputEl = useRef();
 
-  const getInputHandler = (e) => {
-    setImage(e.target.value);
-  };
-
-  const searchImage = (e) => {
+  const submitImageHandler = (e) => {
     e.preventDefault();
-    imageCtx.searchImage(image);
-    setImage(" ");
+
+    props.getImageHandler(inputEl.current.value);
+    inputEl.current.value = "";
   };
 
   return (
-    <form className={styles.form} onSubmit={searchImage}>
+    <form className={styles.form} onSubmit={submitImageHandler}>
       <input
         className={styles.form__input}
-        value={image}
         type="text"
+        ref={inputEl}
         placeholder="Search Images"
-        onChange={getInputHandler}
       />
 
       <button className={styles.form__button}>
