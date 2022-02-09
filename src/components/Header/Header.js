@@ -7,6 +7,10 @@ import { FaInfo } from "react-icons/fa";
 import Form from "../UI/Form";
 
 const Header = (props) => {
+  const getImageHandler = (imageName) => {
+    props.setImageHandler(imageName);
+  };
+
   return (
     <div className={styles.header}>
       <div>
@@ -14,7 +18,7 @@ const Header = (props) => {
       </div>
 
       <div className={styles.searchbar}>
-        <Form />
+        <Form getImageHandler={getImageHandler} />
       </div>
       <FaInfo className={styles.info} />
     </div>

@@ -1,19 +1,57 @@
-import React, { useContext, useEffect } from "react";
-import ImageContext from "../../images/image-context";
+import React from "react";
 
 import styles from "./Gallery.module.scss";
 
-const Gallery = () => {
-  const imgCtx = useContext(ImageContext);
+import background from "../../assets/recal-media-ueBIGLmiI5A-unsplash.webp";
+import photographer from "../../assets/nicolas-ladino-silva-o2DVsV2PnHE-unsplash.webp";
+import background2 from "../../assets/stardust-0713-FACAaPZak2k-unsplash.webp";
 
-  const { results } = imgCtx;
-  console.log(results);
-  let gallery = <p>No images...</p>;
+const Gallery = (props) => {
+  const images = props.images;
 
-  if (results && results.length > 0) {
+  let gallery = (
+    <>
+      <figure
+        className={`${styles.gallery__landing} ${styles["gallery__landing--1"]}`}
+      >
+        <img
+          className={styles["gallery__default"]}
+          src={background}
+          alt="background"
+        />
+      </figure>
+
+      <figure
+        className={`${styles.gallery__landing} ${styles["gallery__landing--3"]}`}
+      >
+        <img
+          className={styles["gallery__default"]}
+          src={background2}
+          alt="background 2"
+        />
+      </figure>
+
+      <figure
+        className={`${styles.gallery__landing} ${styles["gallery__landing--2"]}`}
+      >
+        <img
+          className={styles["gallery__default"]}
+          src={photographer}
+          alt="photographer"
+        />
+      </figure>
+      <h1
+        className={`${styles.gallery__landing} ${styles["gallery__landing--heading"]}`}
+      >
+        Search Images 📷
+      </h1>
+    </>
+  );
+
+  if (images && images.length > 0) {
     gallery = (
       <>
-        {results.map((image, index) => (
+        {images.map((image, index) => (
           <figure
             key={image.id}
             className={`${styles["gallery__item"]} ${
@@ -21,6 +59,7 @@ const Gallery = () => {
             }`}
           >
             <img
+              placeholder={image.blur_hash}
               src={image.urls.regular}
               alt={image.alt_description}
               className={styles["gallery__img"]}
@@ -31,140 +70,7 @@ const Gallery = () => {
     );
   }
 
-  return (
-    <section className={styles.gallery}>
-      {gallery}
-      {/* <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--1"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--2"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--3"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--4"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--5"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--6"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--7"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--8"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--9"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--10"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--11"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--12"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure>
-
-      <figure
-        className={`${styles["gallery__item"]} ${styles["gallery__item--13"]}`}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTg4NzV8MHwxfHNlYXJjaHwxMHx8Y2F0fGVufDB8fHx8MTY0NDMyMzA5Nw&ixlib=rb-1.2.1&q=85"
-          alt="Gallery"
-          className={styles["gallery__img"]}
-        />
-      </figure> */}
-    </section>
-  );
+  return <section className={styles.gallery}>{gallery}</section>;
 };
 
 export default Gallery;
